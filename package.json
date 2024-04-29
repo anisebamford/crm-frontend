@@ -1,0 +1,31 @@
+{
+  "name": "crm-frontend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "codegen": "graphql-codegen",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@emotion/react": "^11.11.4",
+    "@emotion/styled": "^11.11.5",
+    "@mui/joy": "^5.0.0-beta.36",
+    "crm-schema": "github:anisebamford/crm-schema",
+    "graphql": "^16.8.1",
+    "react": "^18.3.1"
+  },
+  "devDependencies": {
+    "@graphql-codegen/cli": "^5.0.2",
+    "@graphql-codegen/client-preset": "^4.2.5",
+    "@parcel/watcher": "^2.4.1",
+    "@types/jest": "^29.5.12",
+    "@types/react": "^18.3.1",
+    "jest": "^29.7.0",
+    "storybook": "^8.0.9",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.4.5"
+  }
+}
