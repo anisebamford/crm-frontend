@@ -12,7 +12,8 @@ export const YesAndNo: StoryObj<typeof SurveyQuestionBooleanInput> = {
   args: {
     surveyQuestion: {
       id: "example-question",
-      question: "What is the smallest possible yak?"
+      question: "What is the smallest possible yak?",
+      required: false,
     },
     onChange: (result) => {
       console.log(result.answer)
@@ -25,7 +26,8 @@ export const Checkbox: StoryObj<typeof SurveyQuestionBooleanInput> = {
     surveyQuestion: {
       id: "example-question",
       question: "What is the smallest possible yak?",
-      trueDisplayValue: "really really tiny"
+      trueDisplayValue: "really really tiny",
+      required: false
     },
     onChange: (result) => {
       console.log(result.answer)
@@ -39,7 +41,8 @@ export const CustomLabels: StoryObj<typeof SurveyQuestionBooleanInput> = {
       id: "example-question",
       question: "What is the smallest possible yak?",
       trueDisplayValue: "really really tiny",
-      falseDisplayValue: "like a bus"
+      falseDisplayValue: "like a bus",
+      required: false,
     },
     onChange: (result) => {
       console.log(result.answer)
