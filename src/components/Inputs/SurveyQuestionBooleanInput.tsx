@@ -1,5 +1,5 @@
 import React, {useCallback, useMemo} from "react";
-import {SurveyAnswerBoolean, SurveyQuestionBoolean} from "../gql/graphql";
+import {SurveyAnswerBoolean, SurveyQuestionBoolean} from "../../gql/graphql";
 import {Checkbox, FormControl, FormLabel, Radio, RadioGroup} from "@mui/joy";
 
 type Props = {
@@ -16,12 +16,16 @@ export function SurveyQuestionBooleanInput({surveyQuestion, onChange}: Props) {
   }, [surveyQuestion])
   const formElement = useMemo(() => {
     if (surveyQuestion.trueDisplayValue && !surveyQuestion.falseDisplayValue) {
-      return <Checkbox label={surveyQuestion.trueDisplayValue} onChange={(event) => changeCallback(event.target.checked)}/>
+      return <Checkbox
+        label={surveyQuestion.trueDisplayValue}
+        onChange={(event) => changeCallback(event.target.checked)}
+        defaultChecked={surveyQuestion.default}
+      />
     }
     else {
-      return <RadioGroup defaultValue={1} onChange={(event) => changeCallback(!!+event.target.value)}>
-        <Radio value={1} label={surveyQuestion.trueDisplayValue || "Yes"} />
-        <Radio value={0} label={surveyQuestion.falseDisplayValue || "No"} />
+      return <RadioGroup defaultValue={surveyQuestion.default} onChange={(event) => changeCallback(event.target.value)}>
+        <Radio value={true} label={surveyQuestion.trueDisplayValue || "Yes"} />
+        <Radio value={false} label={surveyQuestion.falseDisplayValue || "No"} />
       </RadioGroup>
     }
   }, [surveyQuestion])

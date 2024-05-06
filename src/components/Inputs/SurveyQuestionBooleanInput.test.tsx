@@ -1,5 +1,5 @@
 import React from "react";
-import {SurveyQuestionBoolean} from "../gql/graphql";
+import {SurveyQuestionBoolean} from "../../gql/graphql";
 import {SurveyQuestionBooleanInput} from "./SurveyQuestionBooleanInput";
 import {fireEvent, render, screen} from "@testing-library/react";
 import {userEvent} from "@testing-library/user-event";

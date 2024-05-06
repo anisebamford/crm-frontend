@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import {SurveyAnswerInt, SurveyQuestionInt} from "../gql/graphql";
+import {SurveyAnswerInt, SurveyQuestionInt} from "../../gql/graphql";
 import {FormControl, FormHelperText, FormLabel, Input} from "@mui/joy";
 import {NumericFormatAdapter} from "./NumericFormatAdapter";
 import {useDebouncedCallback} from "use-debounce";
@@ -11,11 +11,11 @@ type Props = {
 
 const debounceInterval = 500
 
-export function SurveyQuestionIntInput({surveyQuestion, onChange}: Props) {
+export function SurveyQuestionFloatInput({surveyQuestion, onChange}: Props) {
   const [error, setError] = useState(false);
 
-  const max = typeof surveyQuestion.rangeMax === "number" ? surveyQuestion.rangeMax : Number.MAX_SAFE_INTEGER
-  const min = typeof surveyQuestion.rangeMin === "number" ? surveyQuestion.rangeMin : Number.MIN_SAFE_INTEGER
+  const max = typeof surveyQuestion.rangeMax === "number" ? surveyQuestion.rangeMax : Number.MAX_VALUE
+  const min = typeof surveyQuestion.rangeMin === "number" ? surveyQuestion.rangeMin : Number.MIN_VALUE
 
   const debounce = useDebouncedCallback((input: number) => {
     onChange({
@@ -29,6 +29,7 @@ export function SurveyQuestionIntInput({surveyQuestion, onChange}: Props) {
       {surveyQuestion.question}
     </FormLabel>
     <Input
+      defaultValue={surveyQuestion.default || ""}
       onChange={(event) => {
         const newValue = event.target.value
         setError(min > newValue || max < newValue)
@@ -36,7 +37,7 @@ export function SurveyQuestionIntInput({surveyQuestion, onChange}: Props) {
       }}
       slotProps={{
         input: {
-          component: NumericFormatAdapter(0) as React.ElementType,
+          component: NumericFormatAdapter() as React.ElementType,
         },
       }}
     />

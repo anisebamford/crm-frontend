@@ -69,6 +69,15 @@ export type Customer = {
   person: Person;
 };
 
+export enum DateTimeGranularity {
+  Day = 'DAY',
+  Hour = 'HOUR',
+  Minute = 'MINUTE',
+  Month = 'MONTH',
+  Second = 'SECOND',
+  Year = 'YEAR'
+}
+
 export type Mutation = {
   __typename?: 'Mutation';
   createPerson?: Maybe<Scalars['Boolean']['output']>;
@@ -222,6 +231,7 @@ export type SurveyQuestion = SurveyQuestionBoolean | SurveyQuestionDate | Survey
 
 export type SurveyQuestionBoolean = {
   __typename?: 'SurveyQuestionBoolean';
+  default?: Maybe<Scalars['Boolean']['output']>;
   falseDisplayValue?: Maybe<Scalars['String']['output']>;
   id: Scalars['String']['output'];
   question: Scalars['String']['output'];
@@ -231,6 +241,8 @@ export type SurveyQuestionBoolean = {
 
 export type SurveyQuestionDate = {
   __typename?: 'SurveyQuestionDate';
+  default?: Maybe<Scalars['DateTime']['output']>;
+  granularity?: Maybe<DateTimeGranularity>;
   id: Scalars['String']['output'];
   question: Scalars['DateTime']['output'];
   rangeMax?: Maybe<Scalars['DateTime']['output']>;
@@ -240,6 +252,7 @@ export type SurveyQuestionDate = {
 
 export type SurveyQuestionFloat = {
   __typename?: 'SurveyQuestionFloat';
+  default?: Maybe<Scalars['Float']['output']>;
   id: Scalars['String']['output'];
   question: Scalars['String']['output'];
   rangeMax?: Maybe<Scalars['Float']['output']>;
@@ -249,6 +262,7 @@ export type SurveyQuestionFloat = {
 
 export type SurveyQuestionInt = {
   __typename?: 'SurveyQuestionInt';
+  default?: Maybe<Scalars['Int']['output']>;
   id: Scalars['String']['output'];
   question: Scalars['String']['output'];
   rangeMax?: Maybe<Scalars['Int']['output']>;
@@ -258,6 +272,7 @@ export type SurveyQuestionInt = {
 
 export type SurveyQuestionOptions = {
   __typename?: 'SurveyQuestionOptions';
+  default?: Maybe<Scalars['String']['output']>;
   id: Scalars['String']['output'];
   options: Array<Maybe<Scalars['String']['output']>>;
   question: Scalars['String']['output'];
@@ -266,6 +281,7 @@ export type SurveyQuestionOptions = {
 
 export type SurveyQuestionString = {
   __typename?: 'SurveyQuestionString';
+  default?: Maybe<Scalars['String']['output']>;
   id: Scalars['String']['output'];
   pattern?: Maybe<Scalars['String']['output']>;
   question: Scalars['String']['output'];

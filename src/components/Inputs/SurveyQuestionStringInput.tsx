@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import {SurveyAnswerString, SurveyQuestionString} from "../gql/graphql";
+import {SurveyAnswerString, SurveyQuestionString} from "../../gql/graphql";
 import {FormControl, FormHelperText, FormLabel, Input} from "@mui/joy";
 import {useDebouncedCallback} from "use-debounce";
 
@@ -27,6 +27,7 @@ export function SurveyQuestionStringInput({surveyQuestion, onChange}: Props) {
       {surveyQuestion.question}
     </FormLabel>
     <Input
+      defaultValue={surveyQuestion.default || ""}
       onChange={(event) => {
         const newValue = event.target.value
         setError(newValue && !matcher.test(newValue))

@@ -1,5 +1,5 @@
 import React, {useMemo} from "react";
-import {SurveyAnswerOptions, SurveyQuestionOptions} from "../gql/graphql";
+import {SurveyAnswerOptions, SurveyQuestionOptions} from "../../gql/graphql";
 import {FormControl, FormLabel, Option, Radio, RadioGroup, Select} from "@mui/joy";
 
 type Props = {
@@ -17,18 +17,24 @@ export function SurveyQuestionOptionsInput({surveyQuestion, onChange}: Props) {
 
   const formComponent = useMemo(() => {
     if (surveyQuestion.options.length <= 5) {
-      return <RadioGroup onChange={(event) => {
-        changeHandler(event.target.value)
-      }}>
+      return <RadioGroup
+        onChange={(event) => {
+          changeHandler(event.target.value)
+        }}
+        defaultValue={surveyQuestion.default}
+      >
         {surveyQuestion.options.map((option) => {
-          return <Radio value={option} key={option} label={option}/>
+          return <Radio value={option} key={option} label={option} />
         })}
       </RadioGroup>
     }
     else {
-      return <Select onChange={(event, value) => {
-        changeHandler(value)
-      }}>
+      return <Select
+        onChange={(event, value) => {
+          changeHandler(value)
+        }}
+        defaultValue={surveyQuestion.default}
+      >
         {surveyQuestion.options.map((option) => {
           return <Option value={option} key={option}>{option}</Option>
         })}
