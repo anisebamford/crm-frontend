@@ -14,8 +14,10 @@
     "@emotion/react": "^11.11.4",
     "@emotion/styled": "^11.11.5",
     "@mui/joy": "^5.0.0-beta.36",
+    "@mui/x-date-pickers": "^7.16.0",
     "crm-schema": "github:anisebamford/crm-schema",
     "graphql": "^16.8.1",
+    "luxon": "^3.5.0",
     "react": "^18.3.1",
     "react-number-format": "^5.3.4",
     "use-debounce": "^10.0.0"
