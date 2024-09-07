@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import {SurveyAnswerInt, SurveyQuestionInt} from "../../gql/graphql";
 import {FormControl, FormHelperText, FormLabel, Input} from "@mui/joy";
-import {NumericFormatAdapter} from "./NumericFormatAdapter";
+import {NumericFormatAdapter} from "../generic/NumericFormatAdapter";
 import {useDebouncedCallback} from "use-debounce";
 
 type Props = {
