@@ -2,14 +2,12 @@ import React, {useState} from "react";
 import {SurveyAnswerInt, SurveyQuestionInt} from "../../gql/graphql";
 import {FormControl, FormHelperText, FormLabel, Input} from "@mui/joy";
 import {NumericFormatAdapter} from "../generic/NumericFormatAdapter";
-import {useDebouncedCallback} from "use-debounce";
+import {useDebounce} from "../generic/useDebounce";
 
 type Props = {
   surveyQuestion: SurveyQuestionInt,
   onChange: (answer: SurveyAnswerInt) => void
 }
-
-const debounceInterval = 500
 
 export function SurveyQuestionFloatInput({surveyQuestion, onChange}: Props) {
   const [error, setError] = useState(false);
@@ -17,12 +15,12 @@ export function SurveyQuestionFloatInput({surveyQuestion, onChange}: Props) {
   const max = typeof surveyQuestion.rangeMax === "number" ? surveyQuestion.rangeMax : Number.MAX_VALUE
   const min = typeof surveyQuestion.rangeMin === "number" ? surveyQuestion.rangeMin : Number.MIN_VALUE
 
-  const debounce = useDebouncedCallback((input: number) => {
+  const debounce = useDebounce((input: number) => {
     onChange({
       question: surveyQuestion,
       answer: input,
     })
-  }, debounceInterval)
+  })
 
   return <FormControl error={error}>
     <FormLabel required={surveyQuestion.required}>
@@ -31,7 +29,7 @@ export function SurveyQuestionFloatInput({surveyQuestion, onChange}: Props) {
     <Input
       defaultValue={surveyQuestion.default || ""}
       onChange={(event) => {
-        const newValue = event.target.value
+        const newValue = +event.target.value
         setError(min > newValue || max < newValue)
         debounce(newValue)
       }}
